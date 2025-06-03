@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mario Jump'n'Run - Verbessertes Spiel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <!-- Game UI -->
+        <div id="gameUI" class="game-ui hidden">
+            <div class="ui-top">
+                <div class="score">Punkte: <span id="scoreDisplay">0</span></div>
+                <div class="level">Level: <span id="levelDisplay">1</span></div>
+                <div class="lives">Leben: <span id="livesDisplay">3</span></div>
+                <div class="mario-state">Mario: <span id="marioStateDisplay">Small</span></div>
+            </div>
+        </div>
+
+        <!-- Power-up Display -->
+        <div id="powerupDisplay" class="powerup-display hidden">
+            <div class="powerup-text"></div>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="mainMenu" class="menu-screen">
+            <div class="menu-content">
+                <h1 class="game-title">🍄 Super Mario Jump'n'Run 🍄</h1>
+                <p class="subtitle">Verbesserte Version mit authentischen 8-Bit Assets</p>
+                <div class="menu-buttons">
+                    <button class="btn btn--primary btn--lg btn--retro" onclick="game.startLevel(1)">Level 1 - Einsteiger</button>
+                    <button class="btn btn--primary btn--lg btn--retro" onclick="game.startLevel(2)">Level 2 - Fortgeschritten</button>
+                    <button class="btn btn--primary btn--lg btn--retro" onclick="game.startLevel(3)">Level 3 - Experte</button>
+                    <button class="btn btn--outline btn--lg" onclick="game.quitGame()">Spiel beenden</button>
+                </div>
+                <div class="controls-info">
+                    <p><strong>Steuerung:</strong></p>
+                    <p>WASD zum Bewegen | W = Springen | F = Feuerball (als Fire Mario)</p>
+                    <p>ESC für Pause | Halte W für höhere Sprünge</p>
+                </div>
+                <div class="features-info">
+                    <p><strong>Neue Features:</strong></p>
+                    <p>🍄 Power-ups: Super Mushroom, Fire Flower, 1-Up, Starman</p>
+                    <p>👻 Boo-Geister verstecken sich wenn du sie anschaust!</p>
+                    <p>🔥 Verbesserte Physik und Responsive Steuerung</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pause Menu -->
+        <div id="pauseMenu" class="menu-screen hidden">
+            <div class="menu-content">
+                <h2>⏸️ Spiel pausiert</h2>
+                <div class="menu-buttons">
+                    <button class="btn btn--primary btn--retro" onclick="game.resumeGame()">Weiter spielen</button>
+                    <button class="btn btn--secondary" onclick="game.restartCurrentLevel()">Level neu starten</button>
+                    <button class="btn btn--outline" onclick="game.showMainMenu()">Hauptmenü</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameOverScreen" class="menu-screen hidden">
+            <div class="menu-content">
+                <h2>💀 Game Over</h2>
+                <p class="final-score">Endpunkte: <span id="finalScore">0</span></p>
+                <div class="menu-buttons">
+                    <button class="btn btn--primary btn--retro" onclick="game.restartCurrentLevel()">Nochmal spielen</button>
+                    <button class="btn btn--secondary" onclick="game.showMainMenu()">Hauptmenü</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level Complete Screen -->
+        <div id="levelCompleteScreen" class="menu-screen hidden">
+            <div class="menu-content">
+                <h2>🏆 Level geschafft!</h2>
+                <p class="level-score">Punkte: <span id="levelScore">0</span></p>
+                <div class="completion-stats">
+                    <p>Münzen gesammelt: <span id="coinsCollected">0</span></p>
+                    <p>Gegner besiegt: <span id="enemiesDefeated">0</span></p>
+                </div>
+                <div class="menu-buttons">
+                    <button class="btn btn--primary btn--retro" onclick="game.nextLevel()">Nächstes Level</button>
+                    <button class="btn btn--secondary" onclick="game.restartCurrentLevel()">Level wiederholen</button>
+                    <button class="btn btn--outline" onclick="game.showMainMenu()">Hauptmenü</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
